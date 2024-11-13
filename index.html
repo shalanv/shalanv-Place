@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sh3lan - Personal Portfolio</title>
+    <link rel="icon" type="image/png" href="https://github.com/shalan.png">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="./dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Main container fade in */
+        @keyframes containerFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Name glow effect */
+        .glow-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+                         0 0 20px rgba(255, 255, 255, 0.5),
+                         0 0 30px rgba(255, 255, 255, 0.3);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+                            0 0 20px rgba(255, 255, 255, 0.5),
+                            0 0 30px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
+                            0 0 25px rgba(255, 255, 255, 0.7),
+                            0 0 35px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* Social links */
+        .social-links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link i {
+            font-size: 1.25rem;
+            width: 1.5rem;
+            text-align: center;
+            margin-right: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Platform-specific colors */
+        .social-link.discord:hover { border-color: #5865F2; background: rgba(88, 101, 242, 0.1); }
+        .social-link.github:hover { border-color: #f0f6fc; background: rgba(240, 246, 252, 0.1); }
+        .social-link.youtube:hover { border-color: #ff0000; background: rgba(255, 0, 0, 0.1); }
+        .social-link.tiktok:hover { border-color: #00f2ea; background: rgba(0, 242, 234, 0.1); }
+
+        .social-link.discord:hover i { color: #5865F2; }
+        .social-link.github:hover i { color: #f0f6fc; }
+        .social-link.youtube:hover i { color: #ff0000; }
+        .social-link.tiktok:hover i { color: #00f2ea; }
+
+        .social-link span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .social-link .social-username {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-left: auto;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Skills */
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .skill-tag i {
+            font-size: 1.1rem;
+        }
+
+        .skill-tag img {
+            width: 1.1rem;
+            height: 1.1rem;
+            object-fit: contain;
+        }
+
+        /* Card styles */
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Base styles */
+        body {
+            background-color: #000000;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+        }
+
+        .site-container {
+            flex: 1;
+            padding: 6rem 1rem;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 42rem;
+        }
+
+        /* Details Section */
+        .detail-header {
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .detail-header:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .detail-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .detail-content.active {
+            max-height: 500px;
+            opacity: 1;
+            transform: translateY(0);
+            padding: 0.5rem 1rem;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .detail-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.9);
+            transition: transform 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .detail-list li:hover {
+            transform: translateX(8px);
+        }
+
+        .detail-list i {
+            font-size: 1rem;
+            width: 1.25rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .detail-title {
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .detail-title i {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            width: 1.25rem;
+            text-align: center;
+        }
+
+        .detail-arrow {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.8;
+            font-size: 0.875rem;
+        }
+
+        .detail-arrow.active {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-container">
+        <!-- Profile Header -->
+        <header class="flex flex-col items-center text-center mb-12">
+            <div class="relative mb-6 profile-container delay-1">
+                <img src="https://github.com/shalanv.png" alt="Sh3lan" 
+                     class="w-48 h-48 rounded-full ring-4 ring-primary-border profile-img">
+            </div>
+            <h1 class="text-3xl font-bold mb-2 text-animate delay-2 glow-text">Sh3lan</h1>
+            <div class="flex items-center gap-2 text-primary-muted mb-6 text-animate delay-3">
+                <span>@shalan.v</span>
+            </div>
+            <p class="text-primary-muted text-lg mb-6 text-animate delay-4">Beginner Programmer & Experienced Designer</p>
+        </header>
+
+        <!-- Social Links -->
+        <div class="card mb-8 social-animate delay-6">
+            <h2 class="text-xl font-semibold mb-4">Connect with Me</h2>
+            <div class="social-links-container">
+                <a href="https://discord.gg/s9DBdgebC5" target="_blank" rel="noopener" class="social-link discord">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                    <span class="social-username">@shalan.v</span>
+                </a>
+                <a href="https://github.com/shalanv" target="_blank" rel="noopener" class="social-link github">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                    <span class="social-username">@shalanv</span>
+                </a>
+                <a href="https://youtube.com/@shalan.v" target="_blank" rel="noopener" class="social-link youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                    <span class="social-username">@shalan.v</span>
+                </a>
+                <a href="https://www.tiktok.com/@shalan.v" target="_blank" rel="noopener" class="social-link tiktok">
+                    <i class="fab fa-tiktok"></i>
+                    <span>TikTok</span>
+                    <span class="social-username">@shalan.v</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-animate delay-7">Skills & Technologies</h2>
+            <div class="card">
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-tag">
+                        <i class="fab fa-js" style="color: #F7DF1E;"></i>
+                        JavaScript
+                    </span>
+                    <span class="skill-tag">
+                        <i class="fab fa-node" style="color: #339933;"></i>
+                        Node.js
+                    </span>
+                    <span class="skill-tag">
+                        <img src="https://i.postimg.cc/0y0Sx6mf/Adobe-Photoshop-CC-icon-svg.png" alt="Adobe Photoshop">
+                        Adobe Photoshop
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details -->
+        <div class="flex flex-col gap-4">
+            <div class="card">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-user"></i>
+                        <span class="font-semibold">About Me</span>
+                    </div>
+                    <i class="fas fa-chevron-down detail-arrow"></i>
+                </div>
+                <div class="detail-content">
+                    <div class="detail-list">
+                        <li><i class="fas fa-map-marker-alt"></i>Saudi Arabia</li>
+                        <li><i class="fas fa-birthday-cake"></i>16 Years Old</li>
+                        <li><i class="fas fa-graduation-cap"></i>High School</li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="detail-header" onclick="toggleDetail(this)">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-briefcase"></i>
+                        <span class="font-semibold">Experience</span>
+                    </div>
+                    <i class="fas fa-chevron-down detail-arrow"></i>
+                </div>
+                <div class="detail-content">
+                    <div class="detail-list">
+                        <li>
+                            <i class="fas fa-code"></i>
+                            <div class="flex flex-col">
+                                <span>Freelance Developer</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-paint-brush"></i>
+                            <div class="flex flex-col">
+                                <span>UI/UX Designer</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-discord"></i>
+                            <div class="flex flex-col">
+                                <span>Discord Community Manager</span>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/discord-status.js"></script>
+        <script>
+            // Details toggle functionality
+            function toggleDetail(header) {
+                const content = header.nextElementSibling;
+                const arrow = header.querySelector('.detail-arrow');
+                
+                // Toggle current detail
+                content.classList.toggle('active');
+                arrow.classList.toggle('active');
+                
+                // Close other details
+                const allDetails = document.querySelectorAll('.detail-content');
+                const allArrows = document.querySelectorAll('.detail-arrow');
+                
+                allDetails.forEach((detail) => {
+                    if (detail !== content && detail.classList.contains('active')) {
+                        detail.classList.remove('active');
+                    }
+                });
+                
+                allArrows.forEach((otherArrow) => {
+                    if (otherArrow !== arrow && otherArrow.classList.contains('active')) {
+                        otherArrow.classList.remove('active');
+                    }
+                });
+            }
+        </script>
+    </div>
+    <div class="h-16"></div> <!-- Bottom spacing -->
+</body>
+</html>
