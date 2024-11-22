@@ -1,92 +1,55 @@
-# Quest Studios
+# Hi there, I'm Sh3lan 👋
 
 <div align="center">
-  <img src="https://i.postimg.cc/xCLNcZCC/Quest-Studios-Logo.png" alt="Quest Studios Logo" width="200"/>
+  <img src="https://i.postimg.cc/mkn92wx9/72fd412c46e0f4c725bea0c1060beb57.png" alt="Sh3lan" width="200" style="border-radius: 50%;"/>
   
-  # Your Partner in Digital Innovation! 🚀
+  # Developer & Designer
   
   [![Website](https://img.shields.io/badge/Website-queststudios.netlify.app-blue?style=for-the-badge)](https://queststudios.netlify.app)
-  [![Discord](https://img.shields.io/badge/Discord-Join%20Our%20Community-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JRgkPhD2pC)
+  [![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JRgkPhD2pC)
 </div>
 
-## 🎯 About Us
-Quest Studios is a cutting-edge development and design studio that transforms ideas into exceptional digital experiences. We're passionate about creating innovative solutions that help businesses thrive in the digital age.
+## 🚀 About Me
+I'm a passionate developer and designer who loves creating innovative digital experiences. My focus is on web development and UI/UX design, always striving to build beautiful and functional applications.
 
-### 🌟 Our Mission
-To deliver outstanding digital solutions that exceed client expectations while pushing the boundaries of what's possible in web and mobile development.
+## 💻 Skills
+- **Frontend Development**: HTML, CSS, JavaScript
+- **Design**: UI/UX Design, Web Design
+- **Tools**: Git, VS Code
+- **Frameworks**: Currently expanding my knowledge
 
-## 💫 Our Services
+## 🎯 Projects
 
-### 🌐 Web Development
-- Custom website development
-- Progressive Web Applications (PWA)
-- Responsive design implementation
-- Performance optimization
+### Quest Studios
+A development and design studio focused on creating innovative digital solutions.
+- 🔗 [Visit Website](https://queststudios.netlify.app)
+- ✨ Features:
+  - Modern, responsive design
+  - Dark/Light mode support
+  - Interactive UI elements
+  - Portfolio showcase
 
-### 📱 Mobile App Development
-- Native iOS and Android applications
-- Cross-platform development
-- App maintenance and updates
-- User analytics integration
+### More Projects Coming Soon! 🚧
+I'm always working on new and exciting projects. Stay tuned for updates!
 
-### 🎨 UI/UX Design
-- User interface design
-- User experience optimization
-- Wireframing and prototyping
-- Design system creation
+## 🌟 Current Focus
+- Expanding my programming knowledge
+- Building creative web applications
+- Improving UI/UX design skills
+- Growing the Quest Studios community
 
-### 💡 Technical Consulting
-- Technology stack consultation
-- Performance optimization
-- Security assessment
-- Scalability planning
-
-## 🛠️ Technologies We Use
-- **Frontend**: HTML5, CSS3, JavaScript, React
-- **Backend**: Node.js, Python
-- **Mobile**: React Native
-- **Design**: Figma, Adobe Creative Suite
-- **Version Control**: Git
-
-## 📂 Project Structure
-```
-shalan.v site/
-├── index.html          # Main landing page
-├── studio.html         # Studio information and services
-├── assets/            # Static assets
-│   ├── images/        # Image resources
-│   ├── css/          # Stylesheets
-│   └── js/           # JavaScript files
-└── README.md          # Project documentation
-```
-
-## 🚀 Getting Started
-1. Clone the repository
-   ```bash
-   git clone [repository-url]
-   ```
-2. Navigate to the project directory
-   ```bash
-   cd "shalan.v site"
-   ```
-3. Open `index.html` in your browser to view the site
-
-## 🤝 Connect With Us
+## 🤝 Connect With Me
 - 🌐 **Website**: [queststudios.netlify.app](https://queststudios.netlify.app)
 - 💬 **Discord**: [Join Our Community](https://discord.gg/JRgkPhD2pC)
 - 💻 **GitHub**: Coming Soon!
 
-## 📞 Contact
-Have a project in mind? Join our Discord community to discuss your ideas and get started!
-
-## 🌟 Features
-- ✨ Modern, responsive design
-- 🌓 Dark/Light mode support
-- 📱 Mobile-first approach
-- ⚡ Optimized performance
-- 🔒 Secure by design
+## 📈 Goals
+- Create innovative web applications
+- Build a strong developer community
+- Share knowledge and experiences
+- Collaborate on exciting projects
 
 ---
 <div align="center">
-  Made with ❤️ by Quest Studios
+  <i>Let's create something amazing together!</i>
 </div>
