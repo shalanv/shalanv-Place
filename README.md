@@ -1,11 +1,12 @@
 # Hi there, I'm Sh3lan 👋
 
 <div align="center">
-  <img src="https://i.postimg.cc/mkn92wx9/72fd412c46e0f4c725bea0c1060beb57.png" alt="Sh3lan" width="200" style="border-radius: 50%;"/>
+  <img src="https://i.postimg.cc/mkn92wx9/72fd412c46e0f4c725bea0c1060beb57.png" alt="Sh3lan" width="200" style="border-radius: 100%; border: 3px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.2);"/>
   
   # Developer & Designer
   
-  [![Website](https://img.shields.io/badge/Website-queststudios.netlify.app-blue?style=for-the-badge)](https://queststudios.netlify.app)
+  [![Personal Website](https://img.shields.io/badge/Personal%20Site-shalanv.netlify.app-ff69b4?style=for-the-badge)](https://shalanv.netlify.app)
+  [![Quest Studios](https://img.shields.io/badge/Quest%20Studios-queststudios.netlify.app-blue?style=for-the-badge)](https://queststudios.netlify.app)
   [![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/JRgkPhD2pC)
 </div>
 
@@ -19,6 +20,15 @@ I'm a passionate developer and designer who loves creating innovative digital ex
 - **Frameworks**: Currently expanding my knowledge
 
 ## 🎯 Projects
+
+### Personal Portfolio
+My personal website showcasing my work and skills.
+- 🔗 [Visit Website](https://shalanv.netlify.app)
+- ✨ Features:
+  - Clean, modern design
+  - Project showcase
+  - Responsive layout
+  - Dark/Light mode
 
 ### Quest Studios
 A development and design studio focused on creating innovative digital solutions.
@@ -39,7 +49,8 @@ I'm always working on new and exciting projects. Stay tuned for updates!
 - Growing the Quest Studios community
 
 ## 🤝 Connect With Me
-- 🌐 **Website**: [queststudios.netlify.app](https://queststudios.netlify.app)
+- 🌐 **Personal Site**: [shalanv.netlify.app](https://shalanv.netlify.app)
+- 🎨 **Quest Studios**: [queststudios.netlify.app](https://queststudios.netlify.app)
 - 💬 **Discord**: [Join Our Community](https://discord.gg/JRgkPhD2pC)
 - 💻 **GitHub**: Coming Soon!
 
