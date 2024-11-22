@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects - Sh3lan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root[data-theme="dark"] {
+            --bg-primary: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+            --bg-secondary: rgba(255,255,255,0.03);
+            --text-primary: #fff;
+            --text-secondary: #888;
+            --border-color: rgba(255,255,255,0.1);
+            --hover-bg: rgba(255,255,255,0.1);
+            --card-bg: rgba(255,255,255,0.05);
+            --transition-bg: #121212;
+            --banner-overlay: rgba(0,0,0,0.4);
+            --section-title-gradient: linear-gradient(90deg, #fff, #888);
+            --shadow-color: rgba(0,0,0,0.4);
+            --link-color: #fff;
+            --card-hover: rgba(255,255,255,0.1);
+            --card-active: rgba(255,255,255,0.15);
+            --project-text: #fff;
+            --project-desc: #888;
+        }
+
+        :root[data-theme="light"] {
+            --bg-primary: linear-gradient(135deg, #f5f5f5, #ffffff);
+            --bg-secondary: rgba(0,0,0,0.03);
+            --text-primary: #121212;
+            --text-secondary: #666;
+            --border-color: rgba(0,0,0,0.1);
+            --hover-bg: rgba(0,0,0,0.05);
+            --card-bg: rgba(0,0,0,0.02);
+            --transition-bg: #ffffff;
+            --banner-overlay: rgba(255,255,255,0.4);
+            --section-title-gradient: linear-gradient(90deg, #121212, #444);
+            --shadow-color: rgba(0,0,0,0.1);
+            --link-color: #121212;
+            --card-hover: rgba(0,0,0,0.05);
+            --card-active: rgba(0,0,0,0.08);
+            --project-text: #121212;
+            --project-desc: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            animation: smoothFade 0.25s ease-out forwards;
+        }
+
+        @keyframes smoothFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--hover-bg);
+            transform: translateX(-5px);
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .projects-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--section-title-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-5px);
+        }
+
+        .project-icon {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            border-radius: 1rem 1rem 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .project-icon i {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            background: var(--hover-bg);
+        }
+
+        .project-card:hover .project-icon i {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-category {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--project-text);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--project-desc);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            opacity: 0.8;
+            transform: translateX(5px);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--hover-bg);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle i.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .theme-toggle i:not(.active) {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .projects-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition"></div>
+    <button class="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon active"></i>
+    </button>
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+
+    <main class="container">
+        <header class="projects-header">
+            <h1 class="projects-title">My Projects ✨</h1>
+            <p class="projects-subtitle">A showcase of my work in web development, and creative technology.</p>
+        </header>
+
+        <div class="projects-grid">
+            <!-- Web Development Project -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Web Development 🌐</div>
+                    <h3 class="project-title">Portfolio Website</h3>
+                    <p class="project-description">A modern, responsive portfolio website built with HTML, CSS, and JavaScript.</p>
+                    <a href="index.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Design Project -->
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">App 📱</div>
+                    <h3 class="project-title">Coming Soon 🚀</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const htmlElement = document.documentElement;
+        const sunIcon = document.querySelector('.fa-sun');
+        const moonIcon = document.querySelector('.fa-moon');
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcons(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
+        });
+
+        function updateThemeIcons(theme) {
+            if (theme === 'dark') {
+                moonIcon.classList.add('active');
+                sunIcon.classList.remove('active');
+            } else {
+                sunIcon.classList.add('active');
+                moonIcon.classList.remove('active');
+            }
+        }
+
+        // Page Transition
+        document.addEventListener('DOMContentLoaded', () => {
+            const transition = document.querySelector('.page-transition');
+            transition.style.opacity = '0';
+        });
+    </script>
+</body>
+</html>

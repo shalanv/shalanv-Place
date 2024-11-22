@@ -1,407 +1,958 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sh3lan - Personal Portfolio</title>
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/C5n2KcBT/72fd412c46e0f4c725bea0c1060beb57-modified.png">
+    <title>Sh3lan - Developer & Designer</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="./dist/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Main container fade in */
-        @keyframes containerFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        :root[data-theme="dark"] {
+            --bg-primary: linear-gradient(135deg, #000000, #1a1a1a);
+            --bg-secondary: rgba(255,255,255,0.03);
+            --text-primary: #fff;
+            --text-secondary: #888;
+            --border-color: rgba(255,255,255,0.1);
+            --hover-bg: rgba(255,255,255,0.1);
+            --card-bg: rgba(255,255,255,0.05);
+            --transition-bg: #121212;
+            --gradient-text: linear-gradient(90deg, #fff, #888, #fff);
+            --stat-number-gradient: linear-gradient(90deg, #fff, #888);
+            --icon-color: #888;
+            --shadow-color: rgba(0,0,0,0.4);
+            --link-color: #fff;
+            --link-hover: rgba(255,255,255,0.8);
+            --card-hover: rgba(255,255,255,0.1);
+            --card-active: rgba(255,255,255,0.15);
+            --project-text: #fff;
+            --project-desc: #888;
         }
 
-        /* Name glow effect */
-        .glow-text {
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
-                         0 0 20px rgba(255, 255, 255, 0.5),
-                         0 0 30px rgba(255, 255, 255, 0.3);
-            animation: glowPulse 3s ease-in-out infinite;
+        :root[data-theme="light"] {
+            --bg-primary: linear-gradient(135deg, #f5f5f5, #ffffff);
+            --bg-secondary: rgba(0,0,0,0.03);
+            --text-primary: #121212;
+            --text-secondary: #666;
+            --border-color: rgba(0,0,0,0.1);
+            --hover-bg: rgba(0,0,0,0.05);
+            --card-bg: rgba(0,0,0,0.02);
+            --transition-bg: #ffffff;
+            --gradient-text: linear-gradient(90deg, #121212, #444, #121212);
+            --stat-number-gradient: linear-gradient(90deg, #121212, #444);
+            --icon-color: #444;
+            --shadow-color: rgba(0,0,0,0.1);
+            --link-color: #121212;
+            --link-hover: rgba(0,0,0,0.8);
+            --card-hover: rgba(0,0,0,0.05);
+            --card-active: rgba(0,0,0,0.08);
+            --project-text: #121212;
+            --project-desc: #666;
         }
 
-        @keyframes glowPulse {
-            0%, 100% {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
-                            0 0 20px rgba(255, 255, 255, 0.5),
-                            0 0 30px rgba(255, 255, 255, 0.3);
-            }
-            50% {
-                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
-                            0 0 25px rgba(255, 255, 255, 0.7),
-                            0 0 35px rgba(255, 255, 255, 0.5);
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Social links */
-        .social-links-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05));
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            animation: smoothFade 0.25s ease-out forwards;
         }
 
-        .social-link:hover::before {
-            opacity: 1;
+        @keyframes smoothFade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        .social-link:hover {
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .social-link i {
-            font-size: 1.25rem;
-            width: 1.5rem;
-            text-align: center;
-            margin-right: 0.75rem;
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Profile Section */
+        .hero-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .profile-container {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.1);
             transition: transform 0.3s ease;
         }
 
-        .social-link:hover i {
-            transform: scale(1.1);
+        .profile-img:hover {
+            transform: scale(1.05);
         }
 
-        /* Platform-specific colors */
-        .social-link.discord:hover { border-color: #5865F2; background: rgba(88, 101, 242, 0.1); }
-        .social-link.github:hover { border-color: #f0f6fc; background: rgba(240, 246, 252, 0.1); }
-        .social-link.youtube:hover { border-color: #ff0000; background: rgba(255, 0, 0, 0.1); }
-        .social-link.tiktok:hover { border-color: #00f2ea; background: rgba(0, 242, 234, 0.1); }
-
-        .social-link.discord:hover i { color: #5865F2; }
-        .social-link.github:hover i { color: #f0f6fc; }
-        .social-link.youtube:hover i { color: #ff0000; }
-        .social-link.tiktok:hover i { color: #00f2ea; }
-
-        .social-link span {
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
+        /* Name Effect */
+        .hero-title {
+            font-size: 3rem;
+            margin: 0.5rem 0;
+            background: var(--gradient-text);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+            position: relative;
         }
 
-        .social-link .social-username {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-left: auto;
-            font-family: 'Space Mono', monospace;
+        .hero-title::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% auto;
+            width: 100%;
+            height: 100%;
+            animation: shimmer 3s linear infinite;
+            filter: blur(8px);
         }
 
-        /* Skills */
-        .skill-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 8px 12px;
-            border-radius: 8px;
-            margin: 4px;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Links Container */
+        .social-links {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Stats Cards with Dropdown */
+        .stats-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            color: var(--icon-color);
+            margin-right: 1.5rem;
             transition: all 0.3s ease;
         }
 
-        .skill-tag:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .skill-tag i {
-            font-size: 1.1rem;
-        }
-
-        .skill-tag img {
-            width: 1.1rem;
-            height: 1.1rem;
-            object-fit: contain;
-        }
-
-        /* Card styles */
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Base styles */
-        body {
-            background-color: #000000;
-            color: white;
-            font-family: 'Space Grotesk', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-            margin: 0;
-        }
-
-        .site-container {
+        .stat-content {
             flex: 1;
-            padding: 6rem 1rem;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 42rem;
         }
 
-        /* Details Section */
-        .detail-header {
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.3s ease;
-            border-radius: 12px;
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--stat-number-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .detail-header:hover {
-            background: rgba(255, 255, 255, 0.08);
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .detail-content {
+        .stat-toggle {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-details {
             max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
-            transform: translateY(-10px);
+            padding: 0 1.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .detail-content.active {
-            max-height: 500px;
+        .stat-item.active {
+            background: var(--card-active);
+            border-color: var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stat-item.active .stat-toggle {
+            transform: rotate(180deg);
+        }
+
+        .stat-item.active .stat-details {
+            max-height: 200px;
             opacity: 1;
-            transform: translateY(0);
-            padding: 0.5rem 1rem;
+            padding: 1.5rem;
+        }
+
+        .stat-item:hover {
+            background: var(--card-hover);
+        }
+
+        .stat-item:hover .stat-icon {
+            color: var(--text-primary);
         }
 
         .detail-list {
             list-style: none;
             padding: 0;
             margin: 0;
+            color: var(--text-secondary);
         }
 
         .detail-list li {
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.5rem 0;
-            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .detail-list li i {
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Project Card Styles */
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .project-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-icon i {
             transition: transform 0.3s ease;
-            font-size: 0.875rem;
         }
 
-        .detail-list li:hover {
-            transform: translateX(8px);
+        .project-card:hover .project-icon {
+            background: var(--hover-bg);
         }
 
-        .detail-list i {
-            font-size: 1rem;
-            width: 1.25rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
+        .project-card:hover .project-icon i {
+            transform: scale(1.1);
         }
 
-        .detail-title {
-            font-size: 1rem;
-            font-weight: 500;
+        .project-header {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            padding: 1.5rem;
+            position: relative;
         }
 
-        .detail-title i {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            width: 1.25rem;
-            text-align: center;
+        .project-content {
+            flex: 1;
         }
 
-        .detail-arrow {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0.8;
-            font-size: 0.875rem;
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--project-text);
+            margin-bottom: 0.5rem;
         }
 
-        .detail-arrow.active {
+        .project-subtitle {
+            color: var(--project-desc);
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .project-toggle {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .project-details {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 1.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .project-card.active {
+            background: var(--card-active);
+            border-color: var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .project-card.active .project-toggle {
             transform: rotate(180deg);
+        }
+
+        .project-card.active .project-details {
+            max-height: 500px;
             opacity: 1;
+            padding: 1.5rem;
+        }
+
+        .project-card:hover {
+            background: var(--card-hover);
+        }
+
+        .project-features {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .project-features li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            margin-right: 1rem;
+            color: var(--icon-color);
+            margin-top: 0.2rem;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Social Links - Updated to white-only theme */
+        .social-link {
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: var(--link-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .social-link i {
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            color: var(--link-color);
+        }
+
+        .social-link:hover {
+            opacity: 0.8;
+            color: var(--link-hover);
+        }
+
+        .social-link:hover i {
+            transform: scale(1.1);
+            color: var(--link-hover);
+        }
+
+        /* Remove platform-specific colors */
+        .social-link.discord:hover,
+        .social-link.github:hover,
+        .social-link.youtube:hover,
+        .social-link.tiktok:hover {
+            background: var(--hover-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .social-link.discord:hover i,
+        .social-link.github:hover i,
+        .social-link.youtube:hover i,
+        .social-link.tiktok:hover i {
+            color: var(--text-primary);
+        }
+
+        /* Studio Button Styles */
+        .studio-button-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem 1.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .studio-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .studio-button i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .studio-button:hover {
+            background: var(--hover-bg);
+            border-color: var(--border-color);
+            transform: translateX(5px);
+        }
+
+        .studio-button:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Page Transition Styles */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--transition-bg);
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Animations */
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                gap: 2rem;
+            }
+            
+            .stat-item {
+                padding: 1.5rem;
+                min-height: 9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-left {
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .stat-header {
+                padding: 1.2rem;
+            }
+
+            .stat-icon {
+                font-size: 1.3rem;
+                margin-right: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.3rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .stat-item.active .stat-details {
+                padding: 1.2rem;
+            }
+
+            .social-link {
+                width: 3rem;
+                height: 3rem;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+            }
+
+            .project-icon {
+                font-size: 2.5rem;
+                padding: 1.5rem;
+            }
+
+            .project-header {
+                padding: 1.2rem;
+            }
+
+            .project-title {
+                font-size: 1.3rem;
+            }
+
+            .project-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .studio-button-container {
+                padding: 0.8rem 1.2rem;
+            }
+
+            .studio-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: var(--hover-bg);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle i.active {
+            background: var(--hover-bg);
+        }
+
+        .project-section {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .project-banner {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem 1rem 0 0;
+        }
+        
+        .project-banner img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 1rem 1rem 0 0;
+        }
+        
+        .project-logo {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+        }
+        
+        .project-logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--bg-secondary);
         }
     </style>
 </head>
 <body>
-    <div class="site-container">
-        <!-- Profile Header -->
-        <header class="flex flex-col items-center text-center mb-12">
-            <div class="relative mb-6 profile-container delay-1">
-                <img src="https://i.postimg.cc/mkn92wx9/72fd412c46e0f4c725bea0c1060beb57.png" alt="Sh3lan" 
-                     class="w-48 h-48 rounded-full ring-4 ring-primary-border profile-img">
-            </div>
-            <h1 class="text-3xl font-bold mb-2 text-animate delay-2 glow-text">Sh3lan</h1>
-            <div class="flex items-center gap-2 text-primary-muted mb-6 text-animate delay-3">
-                <span>@shalan.v</span>
-            </div>
-            <p class="text-primary-muted text-lg mb-6 text-animate delay-4">Beginner Programmer & Experienced Designer</p>
-        </header>
+    <div class="page-transition"></div>
+    <button class="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon active"></i>
+    </button>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-left">
+                        <div class="profile-container">
+                            <img src="https://i.postimg.cc/mkn92wx9/72fd412c46e0f4c725bea0c1060beb57.png" alt="Sh3lan" class="profile-img">
+                        </div>
+                        <h1 class="hero-title" data-text="Sh3lan">Sh3lan</h1>
+                        <p class="hero-subtitle">Developer & Designer</p>
+                        <div class="social-links">
+                            <a href="https://discord.gg/s9DBdgebC5" class="social-link discord" target="_blank" rel="noopener">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="https://github.com/shalanv" class="social-link github" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://youtube.com/@shalan.v" class="social-link youtube" target="_blank" rel="noopener">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@shalanv" class="social-link tiktok" target="_blank" rel="noopener">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-right">
+                        <div class="stats-container">
+                            <div class="stat-item">
+                                <div class="stat-header">
+                                    <i class="fas fa-code stat-icon"></i>
+                                    <div class="stat-content">
+                                        <div class="stat-number">2+</div>
+                                        <div class="stat-label">Experience</div>
+                                    </div>
+                                    <i class="fas fa-chevron-down stat-toggle"></i>
+                                </div>
+                                <div class="stat-details">
+                                    <ul class="detail-list">
+                                        <li><i class="fas fa-check"></i> Full-stack Development</li>
+                                        <li><i class="fas fa-check"></i> Web Application Architecture</li>
+                                        <li><i class="fas fa-check"></i> Modern Frontend Frameworks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-header">
+                                    <i class="fas fa-project-diagram stat-icon"></i>
+                                    <div class="stat-content">
+                                        <div class="stat-number">10+</div>
+                                        <div class="stat-label">Projects</div>
+                                    </div>
+                                    <i class="fas fa-chevron-down stat-toggle"></i>
+                                </div>
+                                <div class="stat-details">
+                                    <ul class="detail-list">
+                                        <li><i class="fas fa-check"></i> Web Applications</li>
+                                        <li><i class="fas fa-check"></i> Mobile Apps</li>
+                                        <li><i class="fas fa-check"></i> Open Source Contributions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-header">
+                                    <i class="fas fa-users stat-icon"></i>
+                                    <div class="stat-content">
+                                        <div class="stat-number">1K+</div>
+                                        <div class="stat-label">Community</div>
+                                    </div>
+                                    <i class="fas fa-chevron-down stat-toggle"></i>
+                                </div>
+                                <div class="stat-details">
+                                    <ul class="detail-list">
+                                        <li><i class="fas fa-check"></i> Active Discord Members</li>
+                                        <li><i class="fas fa-check"></i> Social Media Following</li>
+                                        <li><i class="fas fa-check"></i> Open Source Contributors</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-section">
+                            <div class="project-card">
+                                <div class="project-banner">
+                                    <img src="https://i.postimg.cc/8CJ6VcgL/Quest-Studios-Banner.png" alt="Quest Studios Banner">
 
-        <!-- Social Links -->
-        <div class="card mb-8 social-animate delay-6">
-            <h2 class="text-xl font-semibold mb-4">Connect with Me</h2>
-            <div class="social-links-container">
-                <a href="https://discord.gg/s9DBdgebC5" target="_blank" rel="noopener" class="social-link discord">
-                    <i class="fab fa-discord"></i>
-                    <span>Discord</span>
-                    <span class="social-username">@shalan.v</span>
-                </a>
-                <a href="https://github.com/shalanv" target="_blank" rel="noopener" class="social-link github">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                    <span class="social-username">@shalanv</span>
-                </a>
-                <a href="https://youtube.com/@shalan.v" target="_blank" rel="noopener" class="social-link youtube">
-                    <i class="fab fa-youtube"></i>
-                    <span>YouTube</span>
-                    <span class="social-username">@shalan.v</span>
-                </a>
-                <a href="https://www.tiktok.com/@shalanv" target="_blank" rel="noopener" class="social-link tiktok">
-                    <i class="fab fa-tiktok"></i>
-                    <span>TikTok</span>
-                    <span class="social-username">@shalanv</span>
-                </a>
-            </div>
-        </div>
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-content">
+                                        <div class="project-title">Quest Studio ⚡</div>
+                                        <div class="project-subtitle">Development & Design Studio</div>
+                                    </div>
+                                    <i class="fas fa-chevron-down project-toggle"></i>
+                                </div>
+                                <div class="project-details">
+                                    <ul class="project-features">
+                                        <li>
+                                            <i class="fas fa-palette feature-icon"></i>
+                                            <div class="feature-content">
+                                                <div class="feature-title">Creative Design ✨</div>
+                                                <div class="feature-description">Modern UI/UX design solutions with focus on user experience and visual appeal</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-code feature-icon"></i>
+                                            <div class="feature-content">
+                                                <div class="feature-title">Development Services 💻</div>
+                                                <div class="feature-description">Full-stack development using cutting-edge technologies and best practices</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-rocket feature-icon"></i>
+                                            <div class="feature-content">
+                                                <div class="feature-title">Project Launch 🚀</div>
+                                                <div class="feature-description">End-to-end project management from concept to deployment</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-users-cog feature-icon"></i>
+                                            <div class="feature-content">
+                                                <div class="feature-title">Collaborative Approach</div>
+                                                <div class="feature-description">Working closely with clients to bring their vision to life</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="studio-button-container">
+                                    <a href="studio.html" class="studio-button">
+                                        View Studio
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
 
-        <!-- Skills -->
-        <section>
-            <h2 class="text-xl font-semibold mb-4 text-animate delay-7">Skills & Technologies</h2>
-            <div class="card">
-                <div class="flex flex-wrap gap-2">
-                    <span class="skill-tag">
-                        <i class="fab fa-js" style="color: #F7DF1E;"></i>
-                        JavaScript
-                    </span>
-                    <span class="skill-tag">
-                        <i class="fab fa-node" style="color: #339933;"></i>
-                        Node.js
-                    </span>
-                    <span class="skill-tag">
-                        <img src="https://i.postimg.cc/0y0Sx6mf/Adobe-Photoshop-CC-icon-svg.png" alt="Adobe Photoshop">
-                        Adobe Photoshop
-                    </span>
+                            <div class="project-card">
+                                <div class="project-icon">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <div class="project-header">
+                                    <div class="project-content">
+                                        <div class="project-title">My Projects</div>
+                                        <div class="project-subtitle">Development & Design Portfolio</div>
+                                    </div>
+                                    <i class="fas fa-chevron-down project-toggle"></i>
+                                </div>
+                                <div class="project-details">
+                                    <ul class="project-features">
+                                        <li>
+                                            <i class="fas fa-code feature-icon"></i>
+                                            <div class="feature-content">
+                                                <div class="feature-title">Web Development 🌐</div>
+                                                <div class="feature-description">Modern web applications built with cutting-edge technologies and responsive design</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-palette feature-icon"></i>
+                                            <div class="feature-content">
+                                                <div class="feature-title">UI/UX Design 🎨</div>
+                                                <div class="feature-description">Creative design solutions focused on user experience and visual aesthetics</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-mobile-alt feature-icon"></i>
+                                            <div class="feature-content">
+                                                <div class="feature-title">Mobile Development</div>
+                                                <div class="feature-description">Cross-platform mobile applications with native-like performance</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="studio-button-container">
+                                    <a href="projects.html" class="studio-button">
+                                        View Projects
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Details -->
-        <div class="flex flex-col gap-4">
-            <div class="card">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-user"></i>
-                        <span class="font-semibold">About Me</span>
-                    </div>
-                    <i class="fas fa-chevron-down detail-arrow"></i>
-                </div>
-                <div class="detail-content">
-                    <div class="detail-list">
-                        <li><i class="fas fa-map-marker-alt"></i>Saudi Arabia</li>
-                        <li><i class="fas fa-birthday-cake"></i>16 Years Old</li>
-                        <li><i class="fas fa-graduation-cap"></i>High School</li>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="detail-header" onclick="toggleDetail(this)">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-briefcase"></i>
-                        <span class="font-semibold">Experience</span>
-                    </div>
-                    <i class="fas fa-chevron-down detail-arrow"></i>
-                </div>
-                <div class="detail-content">
-                    <div class="detail-list">
-                        <li>
-                            <i class="fas fa-code"></i>
-                            <div class="flex flex-col">
-                                <span>Freelance Developer</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-paint-brush"></i>
-                            <div class="flex flex-col">
-                                <span>UI/UX Designer</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fab fa-discord"></i>
-                            <div class="flex flex-col">
-                                <span>Discord Community Manager</span>
-                            </div>
-                        </li>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script src="./js/discord-status.js"></script>
-        <script>
-            // Details toggle functionality
-            function toggleDetail(header) {
-                const content = header.nextElementSibling;
-                const arrow = header.querySelector('.detail-arrow');
+    </main>
+    <script>
+        // Add click handlers for stat items and project card
+        document.querySelectorAll('.stat-item, .project-card').forEach(item => {
+            item.addEventListener('click', () => {
+                const isProjectCard = item.classList.contains('project-card');
+                const selector = isProjectCard ? '.project-card' : '.stat-item';
                 
-                // Toggle current detail
-                content.classList.toggle('active');
-                arrow.classList.toggle('active');
-                
-                // Close other details
-                const allDetails = document.querySelectorAll('.detail-content');
-                const allArrows = document.querySelectorAll('.detail-arrow');
-                
-                allDetails.forEach((detail) => {
-                    if (detail !== content && detail.classList.contains('active')) {
-                        detail.classList.remove('active');
+                // Remove active class from items of the same type
+                document.querySelectorAll(selector).forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
                     }
                 });
+                // Toggle active class on clicked item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Theme Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const sunIcon = themeToggle.querySelector('.fa-sun');
+            const moonIcon = themeToggle.querySelector('.fa-moon');
+            const html = document.documentElement;
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', savedTheme);
+            updateThemeIcons(savedTheme);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 
-                allArrows.forEach((otherArrow) => {
-                    if (otherArrow !== arrow && otherArrow.classList.contains('active')) {
-                        otherArrow.classList.remove('active');
-                    }
-                });
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcons(newTheme);
+            });
+            
+            function updateThemeIcons(theme) {
+                if (theme === 'dark') {
+                    moonIcon.classList.add('active');
+                    sunIcon.classList.remove('active');
+                } else {
+                    sunIcon.classList.add('active');
+                    moonIcon.classList.remove('active');
+                }
             }
-        </script>
-    </div>
-    <div class="h-16"></div> <!-- Bottom spacing -->
+        });
+
+        // Page Transition
+        document.addEventListener('DOMContentLoaded', () => {
+            const transition = document.querySelector('.page-transition');
+            
+            // Handle clicks on studio button
+            document.querySelectorAll('a[href="studio.html"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+                    
+                    transition.classList.add('active');
+                    
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 250);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
