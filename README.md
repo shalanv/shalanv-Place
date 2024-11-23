@@ -32,7 +32,7 @@ My personal website showcasing my work and skills.
 
 ### Quest Studios
 A development and design studio focused on creating innovative digital solutions.
-- 🔗 [Visit Website](https://queststudios.netlify.app)
+- 🔗 [Visit Website](https://queststu.netlify.app/)
 - ✨ Features:
   - Modern, responsive design
   - Dark/Light mode support
@@ -50,7 +50,7 @@ I'm always working on new and exciting projects. Stay tuned for updates!
 
 ## 🤝 Connect With Me
 - 🌐 **Personal Site**: [shalanv.netlify.app](https://shalanv.netlify.app)
-- 🎨 **Quest Studios**: [queststudios.netlify.app](https://queststudios.netlify.app)
+- 🎨 **Quest Studios**: [queststu.netlify.app/](https://queststu.netlify.app/)
 - 💬 **Discord**: [Join Our Community](https://discord.gg/JRgkPhD2pC)
 - 💻 **GitHub**: Coming Soon!
 
