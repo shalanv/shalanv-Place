@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-primary-bg text-primary-text font-space;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium 
+           transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-accent hover:bg-primary-accent-hover text-white 
+           hover:ring-2 hover:ring-primary-accent/50 hover:scale-[1.02];
+  }
+
+  .btn-outline {
+    @apply btn border border-primary-border hover:border-primary-link text-primary-text 
+           hover:text-primary-link hover:ring-2 hover:ring-primary-link/30 hover:scale-[1.02];
+  }
+
+  .link {
+    @apply text-primary-link relative inline-block transition-all duration-200
+           after:content-[''] after:absolute after:w-full after:h-0.5 
+           after:bg-primary-link after:left-0 after:bottom-0 
+           after:transform after:scale-x-0 after:origin-right after:transition-transform
+           hover:after:scale-x-100 hover:after:origin-left;
+  }
+
+  .card {
+    @apply bg-primary-card border border-primary-border rounded-lg p-6 
+           transition-all duration-300 hover:shadow-xl hover:shadow-primary-accent/5
+           animate-slide-up;
+  }
+
+  .social-link {
+    @apply flex items-center gap-3 text-primary-muted p-3 rounded-lg
+           transition-all duration-200 hover:text-primary-link hover:bg-primary-border/10
+           transform hover:translate-x-1;
+  }
+
+  .tech-pill {
+    @apply px-3 py-1 bg-primary-bg border border-primary-border rounded-full text-sm
+           transition-all duration-200 hover:border-primary-link hover:text-primary-link
+           transform hover:-translate-y-0.5;
+  }
+
+  .logo-grid {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-6 p-4;
+  }
+
+  .logo-item {
+    @apply flex items-center justify-center p-4 rounded-lg bg-primary-card
+           border border-primary-border transition-all duration-300
+           hover:border-primary-link hover:shadow-lg hover:scale-105;
+  }
+
+  .section-title {
+    @apply text-xl font-semibold mb-4 flex items-center gap-2
+           before:content-[''] before:w-4 before:h-0.5 before:bg-primary-accent;
+  }
+}
