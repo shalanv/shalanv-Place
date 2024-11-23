@@ -1,51 +1,30 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./**/*.{html,js}"],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
-      fontFamily: {
-        'space': ['Space Grotesk', 'sans-serif'],
-      },
       colors: {
-        primary: {
-          bg: '#0d1117',
-          card: '#161b22',
-          border: '#30363d',
-          text: '#c9d1d9',
-          muted: '#8b949e',
-          link: '#58a6ff',
-          accent: '#238636',
-          'accent-hover': '#2ea043'
-        }
+        'gh-bg': '#0d1117',
+        'gh-bg-secondary': '#161b22',
+        'gh-border': '#30363d',
+        'gh-text': '#c9d1d9',
+        'gh-text-secondary': '#8b949e',
+        'gh-link': '#58a6ff',
+        'gh-btn': '#238636',
+        'gh-btn-hover': '#2ea043',
       },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 3s ease-in-out infinite',
-        'scale': 'scale 0.15s ease-in-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-        'slide-down': 'slideDown 0.3s ease-out',
+      fontFamily: {
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Noto Sans', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
+        mono: ['SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace'],
       },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        scale: {
-          '0%': { transform: 'scale(1)' },
-          '100%': { transform: 'scale(1.05)' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        slideDown: {
-          '0%': { transform: 'translateY(-10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
+      boxShadow: {
+        'gh': '0 1px 0 rgba(27,31,36,0.04)',
+        'gh-md': '0 3px 6px rgba(140,149,159,0.15)',
+        'gh-lg': '0 8px 24px rgba(140,149,159,0.2)',
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
-      }
     },
   },
   plugins: [],

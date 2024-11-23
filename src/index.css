@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gh-bg text-gh-text antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-gh-btn hover:bg-gh-btn-hover text-white font-semibold rounded-md transition-colors;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-gh-bg-secondary hover:bg-opacity-80 text-gh-text font-semibold rounded-md border border-gh-border transition-colors;
+  }
+
+  .nav-link {
+    @apply px-3 py-2 text-gh-text-secondary hover:text-gh-text transition-colors;
+  }
+
+  .card {
+    @apply p-6 bg-gh-bg rounded-md border border-gh-border hover:border-gh-border/60 transition-colors;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-2 bg-gh-bg border border-gh-border rounded-md text-gh-text placeholder-gh-text-secondary focus:outline-none focus:ring-2 focus:ring-gh-link focus:border-transparent transition-colors;
+  }
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}

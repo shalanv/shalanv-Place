@@ -1,348 +1,184 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="bg-[#0d1117]">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects - Sh3lan</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/yYR3wW63/Quest-Studios-Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Quest Studios - A collaborative studio bringing together developers, designers, and digital creators to build exceptional projects." />
+    <meta name="keywords" content="collaborative studio, developers, designers, digital creators, web development, mobile apps, UI/UX design" />
+    <title>Projects - Quest Studios</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gh-bg': '#0d1117',
+                        'gh-bg-secondary': '#161b22',
+                        'gh-border': '#21262d',
+                        'gh-btn': '#21262d',
+                        'gh-btn-hover': '#30363d',
+                        'gh-text': '#e6edf3',
+                        'gh-text-secondary': '#7d8590'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <style>
-        :root[data-theme="dark"] {
-            --bg-primary: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
-            --bg-secondary: rgba(255,255,255,0.03);
-            --text-primary: #fff;
-            --text-secondary: #888;
-            --border-color: rgba(255,255,255,0.1);
-            --hover-bg: rgba(255,255,255,0.1);
-            --card-bg: rgba(255,255,255,0.05);
-            --transition-bg: #121212;
-            --banner-overlay: rgba(0,0,0,0.4);
-            --section-title-gradient: linear-gradient(90deg, #fff, #888);
-            --shadow-color: rgba(0,0,0,0.4);
-            --link-color: #fff;
-            --card-hover: rgba(255,255,255,0.1);
-            --card-active: rgba(255,255,255,0.15);
-            --project-text: #fff;
-            --project-desc: #888;
+        html {
+            scroll-behavior: smooth;
         }
-
-        :root[data-theme="light"] {
-            --bg-primary: linear-gradient(135deg, #f5f5f5, #ffffff);
-            --bg-secondary: rgba(0,0,0,0.03);
-            --text-primary: #121212;
-            --text-secondary: #666;
-            --border-color: rgba(0,0,0,0.1);
-            --hover-bg: rgba(0,0,0,0.05);
-            --card-bg: rgba(0,0,0,0.02);
-            --transition-bg: #ffffff;
-            --banner-overlay: rgba(255,255,255,0.4);
-            --section-title-gradient: linear-gradient(90deg, #121212, #444);
-            --shadow-color: rgba(0,0,0,0.1);
-            --link-color: #121212;
-            --card-hover: rgba(0,0,0,0.05);
-            --card-active: rgba(0,0,0,0.08);
-            --project-text: #121212;
-            --project-desc: #666;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        html, body {
-            height: 100%;
-            overflow-x: hidden;
-        }
-
         body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            padding: 0;
-            margin: 0;
+            background-color: #0d1117;
+            color: #e6edf3;
             opacity: 0;
-            animation: smoothFade 0.25s ease-out forwards;
+            animation: fadeIn 0.5s ease-in forwards;
         }
-
-        @keyframes smoothFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        .nav-link {
+            color: #7d8590;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .nav-link:hover {
+            color: #e6edf3;
+        }
+        .btn-primary {
+            background-color: #21262d;
+            color: #e6edf3;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #30363d;
+            border-color: #8b949e;
+        }
+        .card {
+            background-color: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+        .card:hover {
+            border-color: #30363d;
+            transform: translateY(-2px);
+        }
+        .header-banner {
+            background-image: url('https://i.postimg.cc/0jTMz1nN/Quest-Studios-Banner.png');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            z-index: 1;
         }
-
-        .back-button {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 100;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: var(--hover-bg);
-            transform: translateX(-5px);
-        }
-
-        .projects-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-top: 2rem;
-        }
-
-        .projects-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: var(--section-title-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .projects-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .project-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            background: var(--card-hover);
-            transform: translateY(-5px);
-        }
-
-        .project-icon {
-            width: 100%;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 4rem;
-            color: var(--text-primary);
-            background: var(--bg-secondary);
-            border-radius: 1rem 1rem 0 0;
-            transition: all 0.3s ease;
-        }
-
-        .project-icon i {
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .project-icon {
-            background: var(--hover-bg);
-        }
-
-        .project-card:hover .project-icon i {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-category {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            color: var(--project-text);
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: var(--project-desc);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            opacity: 0.8;
-            transform: translateX(5px);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            background: var(--bg-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background: var(--hover-bg);
-        }
-
-        .theme-toggle i {
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            position: absolute;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle i.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .theme-toggle i:not(.active) {
+        .page-transition {
             opacity: 0;
-            transform: scale(0.5);
-        }
-
-        @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .projects-title {
-                font-size: 2rem;
-            }
+            transform: translateY(10px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
     </style>
 </head>
-<body>
-    <div class="page-transition"></div>
-    <button class="theme-toggle" aria-label="Toggle theme">
-        <i class="fas fa-sun"></i>
-        <i class="fas fa-moon active"></i>
-    </button>
-    <a href="index.html" class="back-button">
-        <i class="fas fa-arrow-left"></i>
-        Back to Home
-    </a>
-
-    <main class="container">
-        <header class="projects-header">
-            <h1 class="projects-title">My Projects ✨</h1>
-            <p class="projects-subtitle">A showcase of my work in web development, and creative technology.</p>
-        </header>
-
-        <div class="projects-grid">
-            <!-- Web Development Project -->
-            <div class="project-card">
-                <div class="project-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="project-content">
-                    <div class="project-category">Web Development 🌐</div>
-                    <h3 class="project-title">Portfolio Website</h3>
-                    <p class="project-description">A modern, responsive portfolio website built with HTML, CSS, and JavaScript.</p>
-                    <a href="index.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Design Project -->
-            <div class="project-card">
-                <div class="project-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="project-content">
-                    <div class="project-category">App 📱</div>
-                    <h3 class="project-title">Coming Soon 🚀</h3>
-                </div>
-            </div>
-        </div>
-    </main>
-
+<body class="bg-[#0d1117] text-gh-text font-sans min-h-screen flex flex-col">
     <script>
-        // Theme Toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const htmlElement = document.documentElement;
-        const sunIcon = document.querySelector('.fa-sun');
-        const moonIcon = document.querySelector('.fa-moon');
-
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        htmlElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcons(savedTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcons(newTheme);
-        });
-
-        function updateThemeIcons(theme) {
-            if (theme === 'dark') {
-                moonIcon.classList.add('active');
-                sunIcon.classList.remove('active');
-            } else {
-                sunIcon.classList.add('active');
-                moonIcon.classList.remove('active');
-            }
-        }
-
-        // Page Transition
+        // Smooth page transitions
         document.addEventListener('DOMContentLoaded', () => {
-            const transition = document.querySelector('.page-transition');
-            transition.style.opacity = '0';
+            // Handle internal links
+            document.querySelectorAll('a').forEach(link => {
+                if (link.href && link.href.startsWith(window.location.origin)) {
+                    link.addEventListener('click', e => {
+                        e.preventDefault();
+                        document.body.style.opacity = '0';
+                        document.body.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            window.location.href = link.href;
+                        }, 300);
+                    });
+                }
+            });
         });
     </script>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-gh-bg border-b border-gh-border">
+        <nav class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <img src="https://i.postimg.cc/yYR3wW63/Quest-Studios-Logo.png" alt="Quest Studios Logo" class="h-8 w-8 rounded-lg" />
+                        <span class="text-lg font-semibold">Quest Studios</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#services" class="nav-link">Join</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="https://discord.gg/JRgkPhD2pC" target="_blank" class="nav-link">Discord</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 rounded-md text-gh-text-secondary hover:text-gh-text">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Projects Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="text-center mb-16">
+                    <h1 class="text-3xl sm:text-4xl font-bold mb-4">Our Projects</h1>
+                    <p class="text-gh-text-secondary max-w-2xl mx-auto">Discover the collaborative projects created by our community of developers, designers, and digital creators.</p>
+                </div>
+
+                <div class="max-w-2xl mx-auto">
+                    <!-- Coming Soon Card -->
+                    <div class="card group">
+                        <div class="aspect-video bg-gh-btn/10 mb-6 rounded-md group-hover:bg-gh-btn/20 flex items-center justify-center">
+                            <svg class="h-12 w-12 text-gh-text-secondary group-hover:text-gh-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-3 text-center">Projects Coming Soon</h3>
+                        <p class="text-gh-text-secondary text-sm mb-6 leading-relaxed text-center">We're working on some exciting projects with our community. Join our Discord to get involved!</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <span class="px-3 py-1 text-xs rounded-full bg-gh-btn/10 text-gh-text-secondary border border-gh-border">React</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-gh-btn/10 text-gh-text-secondary border border-gh-border">Node.js</span>
+                            <span class="px-3 py-1 text-xs rounded-full bg-gh-btn/10 text-gh-text-secondary border border-gh-border">TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="py-8 px-4 text-center border-t border-gh-border">
+        <p class="text-gh-text-secondary text-sm">Quest Studios 2023</p>
+    </footer>
 </body>
 </html>
